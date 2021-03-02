@@ -4,10 +4,18 @@ package ru.job4j;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+public final class App {
+    /**
+     * jtj.
+     */
+    private App() {
+
+    }
+    /**
+     *
+     * @param args hghj
+     */
+    public static void main(final String[] args) {
+        System.out.println("Hello World!");
     }
 }
