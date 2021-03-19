@@ -22,9 +22,9 @@ public class Generics {
         gen.printBoundedWildCard(third);
         System.out.println();
 
-       // gen.printLowerBoundedWildCard(first);
-       // gen.printLowerBoundedWildCard(second);
-          gen.printLowerBoundedWildCard(third);
+        gen.printLowerBoundedWildCard(first);
+        gen.printLowerBoundedWildCard(second);
+      //    gen.printLowerBoundedWildCard(third);
     }
 
     public void printObject(Collection<?> list) {
@@ -41,9 +41,9 @@ public class Generics {
         }
     }
 
-    public void printLowerBoundedWildCard(List<? extends Tiger> list) {
-        for (Iterator<? extends Tiger> it = list.iterator(); it.hasNext(); ) {
-            Tiger next = it.next();
+    public void printLowerBoundedWildCard(List<? super Predator> list) {
+        for (Iterator<? super Predator> it = list.iterator(); it.hasNext(); ) {
+            Animal next =(Animal)  it.next();
             System.out.println("Текущий элемент: " + next);
         }
     }
