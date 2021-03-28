@@ -15,7 +15,7 @@ public class SimpleArray<T> implements Iterable{
 
    }
     public void set(int index, T model){
-        ob[Objects.checkIndex(index,ob.length)] = model;
+        ob[Objects.checkIndex(index,i)] = model;
     }
     public void remove (int index){
         System.arraycopy(ob,index+1,ob,index,ob.length-1-index);
@@ -25,8 +25,17 @@ public class SimpleArray<T> implements Iterable{
        return (T) ob[Objects.checkIndex(index,ob.length)];
    }
 
-   @Override
+    @Override
     public Iterator iterator() {
-        return Arrays.asList(ob).iterator();
+        return new SimpleArrayIterator(ob);
     }
+
+    // @Override
+   // public Iterator iterator() {
+    //    return Arrays.asList(ob).iterator();
+  //  }
+
+
+
+
 }
