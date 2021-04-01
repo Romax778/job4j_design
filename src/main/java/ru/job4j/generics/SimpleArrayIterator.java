@@ -13,9 +13,10 @@ class SimpleArrayIterator implements Iterator<Object> {
 
     }
 
+
     @Override
     public boolean hasNext() {
-        return point >data.length;
+        return point < data.length&& data[point]!=null;
     }
 
     @Override
