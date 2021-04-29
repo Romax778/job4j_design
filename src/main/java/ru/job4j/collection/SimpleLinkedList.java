@@ -10,9 +10,9 @@ import java.util.Objects;
 
 public class SimpleLinkedList<E> implements List<E> {
 
-    Node<E> head;
+   private  Node<E> head;
 
-    int modCount;
+    private int modCount;
 
     private class Node<E> {
         private E element;
@@ -34,22 +34,27 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public void add(E value) {
+        modCount++;
         Node<E> node = new Node<E>(value, null);
         if (head == null) {
             head = node;
+
             return;
         }
         Node<E> tail = head;
         while (tail.next != null) {
+
             tail = tail.next;
         }
         tail.next = node;
+
     }
 
 
 
     @Override
     public E get(int index) {
+        Objects.checkIndex(index, modCount);
         Node<E> currentNode = head;
         int i = 0;
         while (currentNode != null) {
@@ -59,8 +64,10 @@ public class SimpleLinkedList<E> implements List<E> {
             i++;
             currentNode = currentNode.next;
         }
-        throw new IndexOutOfBoundsException();
+       // throw new IndexOutOfBoundsException();
+        return null;
     }
+
 
     @Override
     public Iterator<E> iterator() {
@@ -68,7 +75,7 @@ public class SimpleLinkedList<E> implements List<E> {
     }
 
     class SimpleLinkedListIterator implements Iterator<E> {
-        boolean isFirst = true;
+
         int expectedModCount;
         SimpleLinkedList.Node currentNode = head;
 
@@ -80,10 +87,8 @@ public class SimpleLinkedList<E> implements List<E> {
 
         @Override
         public boolean hasNext() {
-            if (isFirst || currentNode.next != null) {
-                return true;
-            }
-            return false;
+
+            return currentNode!=null;
         }
 
         @Override
@@ -94,13 +99,20 @@ public class SimpleLinkedList<E> implements List<E> {
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            SimpleLinkedList.Node result = currentNode;
+          /*  SimpleLinkedList.Node result = currentNode;
             if (isFirst) {
                 isFirst = false;
                 return (E) currentNode.getElement();
             }
             currentNode = result.next;
             return (E) currentNode.getElement();
+
+           */
+            E value = (E) currentNode.element;
+
+            currentNode = currentNode.next;
+
+            return value;
 
         }
 
